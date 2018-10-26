@@ -53,7 +53,7 @@ pipeline {
           steps {
             timestamps() {
               cleanWs(deleteDirs: true)
-              dir(path: '../${env.WORKSPACE}@tmp') {
+              dir(path: '${WORKSPACE}@tmp') {
                 deleteDir()
               }
 
@@ -71,7 +71,7 @@ pipeline {
           steps {
             timestamps() {
               cleanWs(deleteDirs: true)
-              dir(path: '../${env.WORKSPACE}@tmp') {
+              dir(path: '${WORKSPACE}@tmp') {
                 deleteDir()
               }
 
