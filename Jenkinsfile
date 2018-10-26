@@ -25,7 +25,7 @@ pipeline {
               dir(path: '../../../test_jenkins@tmp') {
                 deleteDir()
               }
-              dir(path: "${env.WORKSPACE}@tmp") {
+              dir(path: "${WORKSPACE}@tmp") {
                 deleteDir()
               }
             }
@@ -50,7 +50,7 @@ pipeline {
               dir(path: '../../../test_jenkins@tmp') {
                 deleteDir()
               }              
-              dir(path: "${env.WORKSPACE}@tmp") {
+              dir(path: "${WORKSPACE}@tmp") {
                 deleteDir()
               }
             }
@@ -59,7 +59,14 @@ pipeline {
       }
       post {
         always {
-          echo 'Success'
+          script {
+            emailext (
+              subject: "${JOB_NAME} - Build # ${BUILD_NUMBER} - ${currentBuild.currentResult}! ${BUILD_TIMESTAMP}",
+              body: "${JOB_NAME} - Build # ${BUILD_NUMBER} - ${currentBuild.currentResult}:\n\nCheck console output at ${BUILD_URL} to view the results.\n\n${BUILD_TIMESTAMP}",
+              to: "testjenkins8001@gmail.com",
+              attachLog: false
+            )
+          }
         }
       }
     }
