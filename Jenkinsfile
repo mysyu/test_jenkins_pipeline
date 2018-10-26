@@ -1,6 +1,9 @@
 pipeline {
   agent any
-   stages{
+  options {
+    timestamps()
+  }
+  stages{
     stage('Deploy') {
       parallel {
         stage('140.116.82.145') {
@@ -10,13 +13,18 @@ pipeline {
             }
           }
           steps {
-              dir(path: '/test_jenkins/') {
-                bat 'dir'
+              dir(path: '../../../test_jenkins/') {
+                bat 'git fetch --all'               
+                bat 'git reset --hard origin/test_jenkins'
+                bat 'git pull origin test_jenkins'
               }
           }
           post {
             always {
               cleanWs()
+              dir(path: '../../../test_jenkins@tmp') {
+                deleteDir()
+              }
               dir(path: "${env.WORKSPACE}@tmp") {
                 deleteDir()
               }
@@ -30,18 +38,28 @@ pipeline {
             }
           }
           steps {
-              dir(path: '/test_jenkins/') {
-                bat 'dir'
+              dir(path: '../../../test_jenkins/') {
+                bat 'git fetch --all'               
+                bat 'git reset --hard origin/test_jenkins'
+                bat 'git pull origin test_jenkins'
               }
           }
           post {
             always {
               cleanWs()
+              dir(path: '../../../test_jenkins@tmp') {
+                deleteDir()
+              }              
               dir(path: "${env.WORKSPACE}@tmp") {
                 deleteDir()
               }
             }
           }
+        }
+      }
+      post {
+        always {
+          echo 'Success'
         }
       }
     }
