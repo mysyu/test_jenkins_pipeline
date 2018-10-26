@@ -18,6 +18,12 @@ pipeline {
           }
         }
         stage('1-2') {
+          agent {
+            node {
+              label 'node2'
+            }
+
+          }
           steps {
             timestamps() {
               bat 'cd /test_jenkins/ && dir'
