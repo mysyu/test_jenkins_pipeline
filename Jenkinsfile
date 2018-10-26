@@ -35,7 +35,7 @@ pipeline {
     }
     stage('2-1') {
       parallel {
-        stage('1-2') {
+        stage('2-1') {
           agent {
             node {
               label 'master'
