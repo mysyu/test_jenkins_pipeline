@@ -53,9 +53,12 @@ pipeline {
           steps {
             timestamps() {
               cleanWs(deleteDirs: true)
+              dir(path: '../${env.WORKSPACE}@tmp') {
+                deleteDir()
+              }
+
             }
 
-            echo '${env.WORKSPACE}'
           }
         }
         stage('2-2') {
@@ -68,9 +71,12 @@ pipeline {
           steps {
             timestamps() {
               cleanWs(deleteDirs: true)
+              dir(path: '../${env.WORKSPACE}@tmp') {
+                deleteDir()
+              }
+
             }
 
-            echo '${env.WORKSPACE}'
           }
         }
       }
