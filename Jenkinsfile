@@ -50,6 +50,12 @@ pipeline {
           }
         }
         stage('2-2') {
+          agent {
+            node {
+              label 'node2'
+            }
+
+          }
           steps {
             timestamps() {
               cleanWs(deleteDirs: true)
