@@ -1,7 +1,7 @@
 pipeline {
   agent any
-  timestamps() {
-    stages {
+   stages{
+    timestamps() {
       stage('1') {
         parallel {
           stage('1-1') {
