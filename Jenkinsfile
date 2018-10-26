@@ -1,9 +1,9 @@
 pipeline {
   agent any
    stages{
-    stage('1') {
+    stage('Deploy') {
       parallel {
-        stage('1-1') {
+        stage('140.116.82.145') {
           agent {
             node {
               label 'master'
@@ -13,7 +13,6 @@ pipeline {
               dir(path: '/test_jenkins/') {
                 bat 'dir'
               }
-              bat 'dir'
           }
           post {
             always {
@@ -24,7 +23,7 @@ pipeline {
             }
           }
         }
-        stage('1-2') {
+        stage('140.116.138.69') {
           agent {
             node {
               label 'node2'
@@ -34,7 +33,6 @@ pipeline {
               dir(path: '/test_jenkins/') {
                 bat 'dir'
               }
-              bat 'dir'
           }
           post {
             always {
