@@ -12,7 +12,7 @@ pipeline {
           }
           steps {
             timestamps() {
-              dir(path: '/jenkins/') {
+              dir(path: '/test_jenkins/') {
                 bat 'dir'
               }
 
@@ -55,6 +55,7 @@ pipeline {
               cleanWs(deleteDirs: true)
             }
 
+            echo '${env.WORKSPACE}'
           }
         }
         stage('2-2') {
@@ -69,6 +70,7 @@ pipeline {
               cleanWs(deleteDirs: true)
             }
 
+            echo '${env.WORKSPACE}'
           }
         }
       }
