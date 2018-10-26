@@ -33,5 +33,31 @@ pipeline {
         }
       }
     }
+    stage('2-1') {
+      parallel {
+        stage('1-2') {
+          agent {
+            node {
+              label 'master'
+            }
+
+          }
+          steps {
+            timestamps() {
+              cleanWs(deleteDirs: true)
+            }
+
+          }
+        }
+        stage('2-2') {
+          steps {
+            timestamps() {
+              cleanWs(deleteDirs: true)
+            }
+
+          }
+        }
+      }
+    }
   }
 }
