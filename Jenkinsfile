@@ -41,45 +41,5 @@ pipeline {
         }
       }
     }
-    stage('2') {
-      parallel {
-        stage('2-1') {
-          agent {
-            node {
-              label 'master'
-            }
-
-          }
-          steps {
-            timestamps() {
-              cleanWs(deleteDirs: true)
-              dir(path: "${env.WORKSPACE}@tmp") {
-                deleteDir()
-              }
-
-            }
-
-          }
-        }
-        stage('2-2') {
-          agent {
-            node {
-              label 'node2'
-            }
-
-          }
-          steps {
-            timestamps() {
-              cleanWs(deleteDirs: true)
-              dir(path: "${env.WORKSPACE}@tmp") {
-                deleteDir()
-              }
-
-            }
-
-          }
-        }
-      }
-    }
   }
 }
