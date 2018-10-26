@@ -9,18 +9,18 @@ pipeline {
               label 'master'
             }
           }
-          try {
-            steps {
-                dir(path: '/test_jenkins/') {
-                  bat 'dir'
-                }
+          steps {
+              dir(path: '/test_jenkins/') {
                 bat 'dir'
-            }
+              }
+              bat 'dir'
           }
-          finally {
-            cleanWs()
-            dir(path: "${env.WORKSPACE}@tmp") {
-              deleteDir()
+          post {
+            always {
+              cleanWs()
+              dir(path: "${env.WORKSPACE}@tmp") {
+                deleteDir()
+              }
             }
           }
         }
@@ -30,18 +30,18 @@ pipeline {
               label 'node2'
             }
           }
-          try {
-            steps {
-                dir(path: '/test_jenkins/') {
-                  bat 'dir'
-                }
+          steps {
+              dir(path: '/test_jenkins/') {
                 bat 'dir'
-            }
+              }
+              bat 'dir'
           }
-          finally {
-            cleanWs()
-            dir(path: "${env.WORKSPACE}@tmp") {
-              deleteDir()
+          post {
+            always {
+              cleanWs()
+              dir(path: "${env.WORKSPACE}@tmp") {
+                deleteDir()
+              }
             }
           }
         }
