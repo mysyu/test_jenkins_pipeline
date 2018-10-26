@@ -12,7 +12,11 @@ pipeline {
           }
           steps {
             timestamps() {
-              bat 'cd /test_jenkins/ && dir'
+              dir(path: '/jenkins/') {
+                bat 'dir'
+              }
+
+              bat 'dir'
             }
 
           }
@@ -26,7 +30,11 @@ pipeline {
           }
           steps {
             timestamps() {
-              bat 'cd /test_jenkins/ && dir'
+              dir(path: '/test_jenkins') {
+                bat 'dir'
+              }
+
+              bat 'dir'
             }
 
           }
