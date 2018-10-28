@@ -67,6 +67,8 @@ pipeline {
               attachLog: false
             )
           }
+          build job: 'test_jenkins_unit_test', parameters: [string(name: 'url', value: 'http://140.116.82.145:8080')], wait: false
+          build job: 'test_jenkins_unit_test', parameters: [string(name: 'url', value: 'http://140.116.138.69:8080')], wait: false
         }
       }
     }
